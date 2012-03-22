@@ -503,7 +503,7 @@ input[type=text]#QuizCode{
 	width: 50%;
 }
 
-input#admin, input#QuestionText{
+input#admin, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
 	clear: both;
 	font-size: 130%;
 	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;

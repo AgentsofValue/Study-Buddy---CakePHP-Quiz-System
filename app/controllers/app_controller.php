@@ -33,5 +33,33 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	var $component = array('Session');
+	var $components = array('Auth', 'Session');
+	
+	function beforeFilter() {
+		//$this->Auth->allow('*');
+		$this->Auth->loginError = 'Invalid combination of username and password!';
+		$this->Auth->loginRedirect = array('controller' => 'dashboards', 'action' => 'admin_home');
+		$this->Auth->logoutRedirect = array('controller' => 'dashboards', 'action' => 'admin_home');
+		$this->Auth->loginAction = array('admin' => true, 'controller' => 'users', 'action' => 'admin_login');
+		
+		$is_logged_in = $this->_isLoggedIn();
+		$username = $this->_getUsername();
+		
+		$this->set(compact('is_logged_in', 'username'));
+	}
+	
+	function _isLoggedIn() {
+		if($this->Auth->user()) {
+			return true;
+		}
+		return false;
+	}
+	
+	function _getUserName() {
+		$username = null;
+		if($this->Auth->user()) {
+			$username = $this->Auth->user('username');
+		}
+		return $username;
+	}
 }

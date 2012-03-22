@@ -30,4 +30,6 @@
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
+	Router::connect('/admin', array('admin' => true, 'controller' => 'dashboards', 'action' => 'home'));
+	Router::connect('/admin/dashboards', array('admin' => true, 'controller' => 'dashboards', 'action' => 'home'));
 	

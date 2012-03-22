@@ -3,6 +3,10 @@ class QuestionsController extends AppController {
 
 	var $name = 'Questions';
 	var $helpers = array('Html', 'Form', 'Javascript');
+	
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
 
 	function admin_home(){
 	

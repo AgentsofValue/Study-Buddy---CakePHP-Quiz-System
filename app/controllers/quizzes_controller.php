@@ -3,6 +3,10 @@ class QuizzesController extends AppController {
 
 	var $name = 'Quizzes';
 	var $components = array('SwiftMailer');
+	
+	function beforeFilter() {
+		$this->Auth->allow('*');
+	}
 
 	
 	function register(){
