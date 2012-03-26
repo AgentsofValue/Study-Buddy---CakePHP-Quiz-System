@@ -24,7 +24,7 @@ class UsersController extends AppController {
 			
 			if($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
-				$this->redirect(array('controller' => 'dashboards', 'action' => 'admin_home'));
+				$this->redirect(array('action' => 'admin_view'));
 			} else {
 				$this->Session->setFlash(__('Failed to register new user', true));
 			}
@@ -44,10 +44,9 @@ class UsersController extends AppController {
 				} else {
 					$this->Session->setFlash(__('The user could not be updated!', true));
 				}
-			} else {
-				$user = $this->User->find('first', array('conditions' => array('id' => $id)));
-				$this->set('user', $user);
 			}
+			$user = $this->User->find('first', array('conditions' => array('id' => $id)));
+			$this->set('user', $user);
 		}
 	}
 	
