@@ -1,10 +1,9 @@
 <?php
 
-App::import('Model', 'ConnectionManager', false);
 class InstallController extends AppController {
 
 	var $name = 'Install';
-	var $uses = array('User');
+	var $uses = array();
 	
 	var $useDbConfig = 'default';
 	var $tblPrefix = null;
@@ -14,19 +13,19 @@ class InstallController extends AppController {
 		$this->Auth->allow('*');
 		
 		if($this->action == 'account') {
+			parent::loadModel('User');
 			$this->Auth->authenticate = $this->User;
 		}
-		
+	}
+	
+	function index() {
 		// If connection is unavailable redirect to error page.
 		if(!$this->_isDbConnected()) {
 			$this->redirect(array('action' => 'config_error'));
 		}
-	}
-	
-	function index() {		
+		
 		// If tables are already been installed in the database, redirect to admin dashboard.
-		$installed = $this->_isInstalled();
-		if($installed) {
+		if($this->_isInstalled()) {
 			$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'admin_home'));
 		}
 		
@@ -35,10 +34,21 @@ class InstallController extends AppController {
 		$this->set(compact('config'));
 	}
 	
-	function config_error() {}
+	function config_error() {
+		// If connection is available redirect installation page.
+		if($this->_isDbConnected()) {
+			$this->redirect(array('action' => '/'));
+		}
+	}
 	
 	function account() {
-		if(!empty($this->data)) {			
+		$count = $this->User->find('count');
+			
+		if($this->_isInstalled() && $count > 0) {
+			$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'admin_home'));
+		}
+		
+		if(!empty($this->data)) {
 			$this->User->create();
 			
 			// set the user date registered.
@@ -160,14 +170,8 @@ class InstallController extends AppController {
 	function _isInstalled() {
 		$installed = false;
 		
-		if($this->_isTableExists('options')) {
-			parent::loadModel('Options');
-			
-			$options = $this->Options->findByName('tbl_installed');
-			
-			if($options['Options']['name'] == 'tbl_installed' && $options['Options']['value'] == 'true') {
-				$installed = true;
-			}
+		if($this->_getOption('tbl_installed') == 'true') {
+			$installed = true;
 		}
 		
 		return $installed;
@@ -245,5 +249,18 @@ class InstallController extends AppController {
 				(1, 'tbl_installed', 'true'),
 				(2, 'installed_ver', ".$this->dbVersion.");";
 		$db->query($query);
+	}
+	
+	function _getOption($name) {
+		$value = null;
+		
+		if($this->_isTableExists('options')) {
+			parent::loadModel('Options');
+			
+			$options = $this->Options->findByName($name);
+			$value = $options['Options']['value'];
+		}
+		
+		return $value;
 	}
 }

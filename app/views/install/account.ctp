@@ -3,7 +3,7 @@
 		<p style="font-size:20px; color:#458ed2; text-align:center;"><em>Welcome to Study Buddy Installation Page</em></p>
 	</div>
 	<div id="box-account" style=" font-size:15px;">
-		<h3 style="font-weight: bold">Account Information</h3>
+		<h3 style="font-weight: bold">Create an Admin Account Login:</h3>
 		<br style="clear: left;" />
 		<br class="IEonlybr" />
 		<?php

@@ -32,6 +32,9 @@
  * @subpackage    cake.cake.libs.controller
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
+ 
+App::import('Model', 'ConnectionManager', false);
+
 class AppController extends Controller {
 	var $components = array('Auth', 'Session');
 	
