@@ -10,6 +10,7 @@
 		echo $form->create('User', array('action'=>'admin_edit'));
 		echo $form->input('username', array('value' => $user['User']['username']));
 		echo $form->input('password', array('value' => $user['User']['password']));
+		echo $form->input('password_confirmation', array('type' => 'password'));
 		echo $form->hidden('id', array('value' => $user['User']['id']));
 	?>
 	<div align="center">

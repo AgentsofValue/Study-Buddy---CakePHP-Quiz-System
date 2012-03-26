@@ -27,7 +27,6 @@ class UsersController extends AppController {
 				$this->redirect(array('controller' => 'dashboards', 'action' => 'admin_home'));
 			} else {
 				$this->Session->setFlash(__('Failed to register new user', true));
-				$this->redirect(array('action' => 'admin_add'));
 			}
 		}
 	}
@@ -44,7 +43,6 @@ class UsersController extends AppController {
 					$this->redirect(array('action' => 'admin_view'));
 				} else {
 					$this->Session->setFlash(__('The user could not be updated!', true));
-					$this->redirect(array('action' => 'admin_edit'));
 				}
 			} else {
 				$user = $this->User->find('first', array('conditions' => array('id' => $id)));

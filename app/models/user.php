@@ -3,26 +3,26 @@ class User extends AppModel {
 	var $name = 'User';
 	
 	var $validate = array(
-		/* 'username' => array(
+		'username' => array(
 			'Must be atleast 5 to 15 characters' => array(
 				'rule' => array('between', 5, 15),
 				'message' => 'Must be atleast 5 to 15 characters'	
 			),
 			'That username has already been taken' => array(
-				'rules' => 'isUnique',
+				'rule' => 'isUnique',
 				'message' => 'That username has already been taken'
 			)
-		) */
-		/* 'password' => array(
+		),
+		'password' => array(
 			'Must be atleast 5 to 15 characters' => array(
 				'rule' => array('between', 5, 15),
 				'message' => 'Must be atleast 5 to 15 characters'	
 			),
-			'The password do not match' => array(
-				'rules' => 'matchPasswords',
-				'message' => 'The password do not match'
+			'The passwords do not match' => array(
+				'rule' => 'matchPasswords',
+				'message' => 'The passwords do not match'
 			)
-		) */
+		)
 	);
 	
 	function beforeSave() {
@@ -39,10 +39,10 @@ class User extends AppModel {
 	}
 	
 	function matchPasswords($data) {
-		if($this->data['password'] == $this->data['User']['password_confirmation']) {
+		if($this->data['User']['password'] == $this->data['User']['password_confirmation']) {
 			return true;
 		}
-		$this->invalidate('password_confirmation', 'The password do not match');
+		$this->invalidate('password_confirmation', 'The passwords do not match');
 		return false;
 	}
 }

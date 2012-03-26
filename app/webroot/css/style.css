@@ -1178,3 +1178,61 @@ a {
 	display: block;
 	margin-top: -25px;
 }
+
+/*--- Additional CSS Layouts ---*/
+.box-notification {
+	font-size: 14px;
+}
+
+.box-install {
+	margin-bottom: 40px;
+}
+
+.box-install input[type=submit] {
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+#box-tableinfo {
+	/*border: 1px solid;*/
+	margin-bottom: 20px;
+	padding: 0 10px;
+}
+
+#box-tableinfo p {
+	font-size: 12px;
+	margin: 12px 0;
+}
+
+#box-tableinfo p span {
+	color: #6A6A6A;
+	font-style: italic;
+}
+
+#body #box-warning-error, #box-warning-ok {
+	margin-bottom: 10px;
+	padding: 2px 6px;
+	
+	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+}
+
+#body #box-warning-error {
+	background-color: #f00;
+}
+
+#body #box-warning-ok {
+	background-color: #0f0;
+}
+
+#body div.error-message {
+	background-color: #C64000;
+	color: #0A0A0A;
+	font-weight: bold;
+	padding: 10px;
+	position: relative;
+	top: -25px;
+	width: 360px;
+}
