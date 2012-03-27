@@ -13,25 +13,20 @@
 		Take the quiz and learn!</em></strong></p>
 	</div>
 	<?php echo $this->Session->flash('auth'); ?>
-	<div style="text-align:center; padding-left:160px; font-size:15px;">
+	<div style="/*text-align:center; padding-left:160px;*/ font-size:15px;">
 		<?php echo $form->create('Dashboards',array('action'=>'admin_options')); ?>
 		<table>
 			<tr>
-				<td><?php echo $form->select('Option.logo', array('On', 'Off')); ?></td>
+				<td><label>Header Title: </td>
+				<td><?php echo $form->input('password', array('label' => false)); ?></td>
 			</tr>
 			<tr>
-				<td><?php echo $form->input('password'); ?></td>
+				<td><label>Description: </td>
+				<td><?php echo $form->textarea('username', array('label' => false)); ?></td>
 			</tr>
 			<tr>
-				<script>
-					$(document).ready(function() {
-						$('#input1').keyup(function(event) {
-							alert($(this).val());
-						});
-					});
-					
-				</script>
-				<td><?php echo $form->input('username'); ?></td>
+				<td><label>Logo: </td>
+				<td><?php echo $form->select('Option.logo', array('On', 'Off'), '', array('style' => 'margin-bottom: 0px;')); ?></td>
 			</tr>
 		</table>
 		<?php echo $form->end('Login'); ?>

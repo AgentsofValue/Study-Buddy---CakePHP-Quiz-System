@@ -42,7 +42,7 @@ class AppController extends Controller {
 		//$this->Auth->allow('*');
 		$this->Auth->loginError = 'Invalid combination of username and password!';
 		$this->Auth->loginRedirect = array('controller' => 'dashboards', 'action' => 'admin_home');
-		$this->Auth->logoutRedirect = array('controller' => 'dashboards', 'action' => 'admin_home');
+		$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'admin_login');
 		$this->Auth->loginAction = array('admin' => true, 'controller' => 'users', 'action' => 'admin_login');
 		
 		$is_logged_in = $this->_isLoggedIn();

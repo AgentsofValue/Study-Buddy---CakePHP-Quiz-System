@@ -70,6 +70,8 @@ class UsersController extends AppController {
 	}
 	
 	function admin_login() {
+		$this->layout = 'login';
+		
 		if(!empty($this->data) && $this->Auth->user()) {
 			$this->User->id = $this->Auth->user('id');
 			$this->User->saveField('last_login', date('Y-m-d H:i:s'));

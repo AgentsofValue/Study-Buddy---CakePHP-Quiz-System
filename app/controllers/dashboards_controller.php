@@ -7,7 +7,7 @@ class DashboardsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow(array('admin_home'));
+		//$this->Auth->allow(array('admin_home'));
 	}
 	
 	function admin_home() {}
