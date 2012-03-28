@@ -5,6 +5,7 @@ class QuestionsController extends AppController {
 	var $helpers = array('Html', 'Form', 'Javascript');
 	
 	function beforeFilter() {
+		parent::beforeFilter();
 		$this->Auth->allow('*');
 	}
 

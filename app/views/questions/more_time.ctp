@@ -1,4 +1,4 @@
-<h2 style="color:#2482cc;">Google Analytics Study Buddy</h2>
+<h2 style="color:#2482cc;"><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
             <div class="indent">
 				
 				<p style="font-size:20px; "><em>You still have <em style="color:#2482cc;"><?php echo $marked; ?></em> marked questions. Do you want to return to those questions?</em></p>

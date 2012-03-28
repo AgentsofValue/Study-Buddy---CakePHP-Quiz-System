@@ -5,6 +5,7 @@ class QuizzesController extends AppController {
 	var $components = array('SwiftMailer');
 	
 	function beforeFilter() {
+		parent::beforeFilter();
 		$this->Auth->allow('*');
 	}
 

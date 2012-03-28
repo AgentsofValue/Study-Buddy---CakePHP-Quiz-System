@@ -8,7 +8,7 @@
 						
 					</div>
 					<div id="right_review_header">
-						<h2>Google Analytics Study Buddy</h2>
+						<h2><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
 						<div id="left_topreview">
 							<h3>REVIEW QUESTIONS</h3>
 						</div>
@@ -104,7 +104,10 @@
 
 <div style="text-align:left;">
 						
-	<?php echo $this->Html->image('../css/images/poweredtext.png', array('alt' => ''));?>
+	<?php
+		$style = ($viewlogo == 'off') ? 'visibility: hidden' : '';
+		echo $this->Html->image('../css/images/poweredtext.png', array('alt' => '', 'style' => $style));
+	?>
 					
 	
 </div>

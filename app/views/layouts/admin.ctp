@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title><?php echo $site_title; ?> - Administrator Dashboard</title>
+  <title><?php echo ($site_title == null) ? 'Welcome New' : $site_title; ?> - Administrator Dashboard</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<meta http-equiv="Content-Language" content="en" /> 
 		<meta name="robots" content="FOLLOW,INDEX" /> 
@@ -29,7 +29,7 @@
 							</div>
 							<div id="topinvibox1" style="height: auto; min-height: 450px; overflow: hidden;">
 								<div class="indent">
-									<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo $header_title; ?><br />Administrator Dashboard</em></p>
+									<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?><br />Administrator Dashboard</em></p>
 								</div>
 								<br /><br />
 								<div id="slidemenu" class="slidetabsmenu">

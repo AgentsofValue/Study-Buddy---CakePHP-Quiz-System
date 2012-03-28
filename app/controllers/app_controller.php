@@ -52,8 +52,9 @@ class AppController extends Controller {
 		$viewlogo = $this->Option->getOption('viewlogo');
 		$site_title = $this->Option->getOption('site_title');
 		$header_title = $this->Option->getOption('title');
+		$taglines = $this->Option->getOption('taglines');
 		
-		$this->set(compact('is_logged_in', 'username', 'viewlogo', 'site_title', 'header_title'));
+		$this->set(compact('is_logged_in', 'username', 'viewlogo', 'site_title', 'header_title', 'taglines'));
 	}
 	
 	function _isLoggedIn() {

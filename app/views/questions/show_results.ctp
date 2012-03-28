@@ -9,7 +9,7 @@
 
 	<div id="topinvibox2">
 		
-		<h2 style="color:#2482cc;">Google Analytics Study Buddy
+		<h2 style="color:#2482cc;"><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
 		<div id="top-right">
 			&nbsp;&nbsp;
 			<div style="float:right;">
@@ -25,7 +25,7 @@
 					<strong><em style="font-size:20px;">Your Score: <em style="color:#dd0021;font-size:20px;"><?php echo round($score['percentage'], 2);?>%</em></em></strong>
 				<?php elseif ($score['status']=='passed'):?>
 					<em>Congratualtions! You <em style="color:#004d12;">passed</em> the exam!</em><br><br>
-					<strong><em style="font-size:20px;">Your Score: <em style="color:#004d12;><?php echo round($score['percentage'], 2);?>%</em></em></strong>
+					<strong><em style="font-size:20px;">Your Score: <em style="color:#004d12;"><?php echo round($score['percentage'], 2);?>%</em></em></strong>
 				<?php endif;?>
 		
 		
@@ -54,8 +54,7 @@
 									<?foreach($percent as $counter):?>
 									
 										<th scope="col"><?php echo $counter['title'];?></th>
-										
-									</tr>
+									
 									<?php	endforeach; ?>
 									
 								</tr>
@@ -118,5 +117,8 @@
 
 	</div>
 	<div style="text-align:left;">
-		<?php echo $this->Html->image('../css/images/poweredtext.png', array('alt' => ''));?>
+		<?php
+			$style = ($viewlogo == 'off') ? 'visibility: hidden' : '';
+			echo $this->Html->image('../css/images/poweredtext.png', array('alt' => '', 'style' => $style));
+		?>
 	</div>

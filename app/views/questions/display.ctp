@@ -168,7 +168,7 @@
 		
 			<div id="top-left">
 				
-					<h2 style="color:#2482cc; clear:both;margin-bottom:30px; font-weight:bold;">Google Analytics Study Buddy</h2>
+					<h2 style="color:#2482cc; clear:both;margin-bottom:30px; font-weight:bold;"><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
 			
 			</div>
 			<div id="after_title">

@@ -43,7 +43,7 @@ class DashboardsController extends AppController {
 				$this->data['Option'][2]['description'],
 				$this->data['Option'][3]['description']
 			);
-			if(empty($taglines)) {
+			if($taglines !== false && $taglines == null) {
 				//do save
 				$this->Option->setOption('taglines', $taglines_val);
 			} else {
@@ -51,7 +51,7 @@ class DashboardsController extends AppController {
 				$this->Option->setOption('taglines', $taglines_val, false);
 			}
 			
-			if(empty($viewlogo)) {
+			if($viewlogo !== false && $viewlogo == null) {
 				//do save
 				$this->Option->setOption('viewlogo', $this->data['Option']['viewlogo']);
 			} else {

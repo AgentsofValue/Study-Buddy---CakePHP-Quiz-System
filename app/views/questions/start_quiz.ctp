@@ -2,11 +2,11 @@
 
 <div id="topinvibox1">
 				  <div class="indent">
-					  <p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em>Google Analytics Study Buddy</em></p>
+					  <p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></em></p>
 					<hr style="color:#dddddd;" />
 					  <p style="text-align:center;"><strong><em style="font-size: 14px; color:#4d4d4d;">
 						
-						Click start button and enjoy the quiz! Goodluck!
+						<?php echo (empty($taglines[3])) ? 'Click start button and enjoy the quiz! Goodluck!' : $taglines[3]; ?>
 					  </em></strong></p>
 				  </div>
 				  
@@ -27,6 +27,9 @@
 				  </div>
 				  </div>
 				  <div style="text-align:left;">
-						<?php echo $this->Html->image('../css/images/poweredtext.png', array('alt' => ''));?>
+						<?php
+							$style = ($viewlogo == 'off') ? 'visibility: hidden' : '';
+							echo $this->Html->image('../css/images/poweredtext.png', array('alt' => '', 'style' => $style));
+						?>
 						
 				  </div>
