@@ -40,8 +40,8 @@ class DashboardsController extends AppController {
 			$taglines_val = array(
 				$this->data['Option'][0]['description'],
 				$this->data['Option'][1]['description'],
-				$this->data['Option'][3]['description'],
-				$this->data['Option'][2]['description']
+				$this->data['Option'][2]['description'],
+				$this->data['Option'][3]['description']
 			);
 			if(empty($taglines)) {
 				//do save
