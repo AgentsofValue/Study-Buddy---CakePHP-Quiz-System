@@ -21,7 +21,7 @@ class DashboardsController extends AppController {
 		$viewlogo = $this->Option->getOption('viewlogo');
 		
 		if(!empty($this->data)) {
-			if(empty($title)) {
+			if($title !== false && $title == null) {
 				//do save
 				$this->Option->setOption('title', $this->data['Option']['title']);
 			} else {
@@ -29,7 +29,7 @@ class DashboardsController extends AppController {
 				$this->Option->setOption('title', $this->data['Option']['title'], false);
 			}
 			
-			if(empty($stitle)) {
+			if($stitle !== false && $stitle == null) {
 				//do save
 				$this->Option->setOption('site_title', $this->data['Option']['stitle']);
 			} else {

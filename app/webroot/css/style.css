@@ -1,9 +1,14 @@
+@font-face {
+    font-family: "Frutiger Linotype";
+    src: url(fonts/ufonts.com_frutiger-linotype1.ttf);
+}
+
 img{
 	background-color: #fff;
 	
 }
 body{
-	font-family: tahoma, helvetica, arial, sans-serif;
+	font-family: Frutiger Linotype, tahoma, helvetica, arial, sans-serif;
 	text-align: center;
 	color: #6f6f6f;
 }
@@ -488,7 +493,7 @@ input[type=text]{
 	margin-bottom:10px;
 	clear: both;
 	font-size: 100%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
 	width:98%;
 	background: #fee3ad;
 	
@@ -498,7 +503,7 @@ input[type=text]#QuizCode{
 
 	clear: both;
 	font-size: 150%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
 	background: #fee3ad;
 	width: 50%;
 }
@@ -506,7 +511,7 @@ input[type=text]#QuizCode{
 input#admin, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
 	clear: both;
 	font-size: 130%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
 	padding: 1%;
 	width:90%;
 	background: #97FFFF;
@@ -549,7 +554,7 @@ input[type=radio] {
 	width:5%;
 	clear: both;
 	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
 	padding: 20%;
 
 
@@ -1133,4 +1138,21 @@ a {
 	position: relative;
 	top: -25px;
 	width: 360px;
+}
+
+#authMessage {
+	color: #f00;
+	text-align: center;
+}
+
+#form-configuration input[type=text] {
+	margin-left: 10px;
+	width: 330px;
+}
+
+#form-configuration select {
+	font-family: Frutiger Linotype;
+	font-size: 100%;
+	margin-bottom: 0;
+	margin-left: 10px;
 }
