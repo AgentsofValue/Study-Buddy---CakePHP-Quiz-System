@@ -48,7 +48,12 @@ class AppController extends Controller {
 		$is_logged_in = $this->_isLoggedIn();
 		$username = $this->_getUsername();
 		
-		$this->set(compact('is_logged_in', 'username'));
+		parent::loadModel('Option');
+		$viewlogo = $this->Option->getOption('viewlogo');
+		$site_title = $this->Option->getOption('site_title');
+		$header_title = $this->Option->getOption('title');
+		
+		$this->set(compact('is_logged_in', 'username', 'viewlogo', 'site_title', 'header_title'));
 	}
 	
 	function _isLoggedIn() {

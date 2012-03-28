@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Welcome New - Page</title>
+  <title><?php echo $site_title; ?> - Login Page</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<meta http-equiv="Content-Language" content="en" /> 
 		<meta name="robots" content="FOLLOW,INDEX" /> 
@@ -33,7 +33,10 @@
 							
 							</div>
 							<div style="text-align:left;">
-								<?php echo $this->Html->image('../css/images/poweredtext.png', array('alt' => ''));?>
+								<?php
+									$style = ($viewlogo == 'off') ? 'visibility: hidden' : '';
+									echo $this->Html->image('../css/images/poweredtext.png', array('alt' => '', 'style' => $style));
+								?>
 							</div>
 						</div>
 					</div>

@@ -1,19 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Welcome New - Page</title>
+  <title><?php echo $site_title; ?> - Administrator Dashboard</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 		<meta http-equiv="Content-Language" content="en" /> 
 		<meta name="robots" content="FOLLOW,INDEX" /> 
-		<link rel="stylesheet" href="style.css" type="text/css" /> 
-		<?php
-			echo $this->Html->css('reset');
-			echo $this->Html->css('style');
-			echo $this->Html->css('slidingdoor');
-		?>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-		<?php echo $html->script(array('dropdowntabs.js', 'cloning.js')); ?>
+		<?php
+			echo $html->script(array('dropdowntabs.js', 'cloning.js'));
+			echo $html->css(array('reset', 'style', 'slidingdoor'));
+		?>
 </head>
 <body>
 	<div id="wrapper">
@@ -32,7 +29,7 @@
 							</div>
 							<div id="topinvibox1" style="height: auto; min-height: 450px; overflow: hidden;">
 								<div class="indent">
-									<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em>Google Analytics Study Buddy<br />Administrator Dashboard</em></p>
+									<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo $header_title; ?><br />Administrator Dashboard</em></p>
 								</div>
 								<br /><br />
 								<div id="slidemenu" class="slidetabsmenu">
@@ -68,10 +65,12 @@
 								</div>
 							<?php echo $this->Session->flash(); ?>
 							<?php echo $content_for_layout; ?>
-							
 							</div>
 							<div style="text-align:left; margin-top: 20px;">
-								<?php echo $this->Html->image('../css/images/poweredtext.png', array('alt' => ''));?>
+								<?php
+									$style = ($viewlogo == 'off') ? 'visibility: hidden' : '';
+									echo $this->Html->image('../css/images/poweredtext.png', array('alt' => '', 'style' => $style));
+								?>
 							</div>
 						</div>
 					</div>

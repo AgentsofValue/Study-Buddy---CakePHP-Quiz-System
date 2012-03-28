@@ -12,7 +12,58 @@ class DashboardsController extends AppController {
 	
 	function admin_home() {}
 	
-	function admin_configurations() {}
+	function admin_configurations() {
+		parent::loadModel('Option');
+		
+		$stitle = $this->Option->getOption('site_title');
+		$title = $this->Option->getOption('title');
+		$taglines = $this->Option->getOption('taglines');
+		$viewlogo = $this->Option->getOption('viewlogo');
+		
+		if(!empty($this->data)) {
+			if(empty($title)) {
+				//do save
+				$this->Option->setOption('title', $this->data['Option']['title']);
+			} else {
+				//do update
+				$this->Option->setOption('title', $this->data['Option']['title'], false);
+			}
+			
+			if(empty($stitle)) {
+				//do save
+				$this->Option->setOption('site_title', $this->data['Option']['stitle']);
+			} else {
+				//do update
+				$this->Option->setOption('site_title', $this->data['Option']['stitle'], false);
+			}
+			
+			$taglines_val = array(
+				$this->data['Option'][0]['description'],
+				$this->data['Option'][1]['description'],
+				$this->data['Option'][3]['description'],
+				$this->data['Option'][2]['description']
+			);
+			if(empty($taglines)) {
+				//do save
+				$this->Option->setOption('taglines', $taglines_val);
+			} else {
+				//do update
+				$this->Option->setOption('taglines', $taglines_val, false);
+			}
+			
+			if(empty($viewlogo)) {
+				//do save
+				$this->Option->setOption('viewlogo', $this->data['Option']['viewlogo']);
+			} else {
+				//do update
+				$this->Option->setOption('viewlogo', $this->data['Option']['viewlogo'], false);
+			}
+			
+			$this->Session->setFlash(__('Options Save!', true));
+			$this->redirect($this->referer());
+		}
+		$this->set(compact('title', 'stitle', 'taglines', 'viewlogo'));
+	}
 	
 	function admin_add() {
 		if(!empty($this->data)) {

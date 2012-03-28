@@ -678,7 +678,7 @@ div#flashMessage.message{
 	color: red;
 	font-size: 120%;
 	font-weight: bold;
-	margin: 0 0 1em 0;
+	margin: 1em 0;
 	background-color: #FFF68F;
 	padding: 10px;
 }
