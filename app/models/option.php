@@ -28,11 +28,11 @@ class Option extends AppModel {
 			$value = serialize($value);
 		}
 		if($isnew) {
-		
 			$this->create();
 			$this->data['Option'] = array('name' => $name, 'value' => $value);
-				return true;
+			
 			if($this->save($this->data)) {
+				return true;
 			}
 		} else {
 			$oldvalue = $this->getOption($name);
