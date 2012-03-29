@@ -20,7 +20,7 @@
 					<div>
 						<div class="inner">
 							<div class="nav-head" style="float: right;">
-								<?php echo $html->link('Go to Main Site', array('admin' => false, 'controller' => 'quizzes', 'action' => 'home')); ?>&nbsp|&nbsp
+								<?php echo $html->link('Visit Site', array('admin' => false, 'controller' => 'quizzes', 'action' => 'home')); ?>&nbsp|&nbsp
 								<?php if($is_logged_in) : ?>
 									Welcome <?php echo $username; ?>!&nbsp;&nbsp;
 									(<?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'admin_logout')); ?>)
@@ -36,7 +36,7 @@
 								<div id="slidemenu" class="slidetabsmenu">
 									<ul>
 										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_home')); ?>" title="Home"><span>Home</span></a></li>
-										<li><a href="<?php echo $html->url(array('action' => 'admin_configurations')); ?>" title="Configurations"><span>Configurations</span></a></li>
+										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_configurations')); ?>" title="Configurations"><span>Configurations</span></a></li>
 										<li><a href="#" title="Reports"><span>Reports</span></a></li>
 										<li><a href="#" title="Add" rel="dropmenu1_c"><span>Add</span></a></li>
 										<li><a href="#" title="Review" rel="dropmenu2_c"><span>View</span></a></li>

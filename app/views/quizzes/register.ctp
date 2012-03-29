@@ -3,7 +3,7 @@
 					  <p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></em></p>
 					<hr style="color:#dddddd;" />
 					  <p style="text-align:center;"><strong><em style="font-size: 14px; color:#4d4d4d;">
-						Preparing for tests like a Google Analytics Individual Certificate is tough.<br>
+						<?php echo (empty($taglines[0])) ? 'Preparing for tests like a Google Analytics Individual Certificate is tough.' : $taglines[0]; ?><br>
 						<?php echo (empty($taglines[2])) ? 'Take the quiz and learn!' : $taglines[2]; ?>
 					  </em></strong></p>
 				  </div>
