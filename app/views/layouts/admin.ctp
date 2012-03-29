@@ -20,9 +20,10 @@
 					<div>
 						<div class="inner">
 							<div class="nav-head" style="float: right;">
+								<?php echo $html->link('Go to Main Site', array('admin' => false, 'controller' => 'quizzes', 'action' => 'home')); ?>&nbsp|&nbsp
 								<?php if($is_logged_in) : ?>
-									Welcome <?php echo $username; ?>!&nbsp;&nbsp;&nbsp;&nbsp;
-									<?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'admin_logout')); ?>
+									Welcome <?php echo $username; ?>!&nbsp;&nbsp;
+									(<?php echo $html->link('Logout', array('controller' => 'users', 'action' => 'admin_logout')); ?>)
 								<?php else: ?>
 									<?php echo $html->link('Login', array('controller' => 'users', 'action' => 'admin_login')); ?>
 								<?php endif; ?>

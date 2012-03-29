@@ -26,7 +26,11 @@ class InstallController extends AppController {
 		
 		// If tables are already been installed in the database, redirect to admin dashboard.
 		if($this->_isInstalled()) {
-			$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'admin_home'));
+			if(parent::_isLoggedIn()) {
+				$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'home'));
+			} else {
+				$this->redirect(array('admin' => true, 'controller' => 'users', 'action' => 'login'));
+			}
 		}
 		
 		$config = $this->_getConfigInfo();
@@ -45,7 +49,11 @@ class InstallController extends AppController {
 		$count = $this->User->find('count');
 			
 		if($this->_isInstalled() && $count > 0) {
-			$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'admin_home'));
+			if(parent::_isLoggedIn()) {
+				$this->redirect(array('admin' => true, 'controller' => 'dashboards', 'action' => 'home'));
+			} else {
+				$this->redirect(array('admin' => true, 'controller' => 'users', 'action' => 'login'));
+			}
 		}
 		
 		if(!empty($this->data)) {
