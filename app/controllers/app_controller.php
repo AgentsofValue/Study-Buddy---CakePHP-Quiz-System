@@ -38,7 +38,11 @@ App::import('Model', 'ConnectionManager', false);
 class AppController extends Controller {
 	var $components = array('Auth', 'Session');
 	
+	var $view = 'Theme';
+	
 	function beforeFilter() {
+		parent::loadModel('Option');
+		
 		//$this->Auth->allow('*');
 		$this->Auth->loginError = 'Invalid combination of username and password!';
 		$this->Auth->loginRedirect = array('controller' => 'dashboards', 'action' => 'admin_home');
@@ -48,7 +52,9 @@ class AppController extends Controller {
 		$is_logged_in = $this->_isLoggedIn();
 		$username = $this->_getUsername();
 		
-		parent::loadModel('Option');
+		// Load Theme
+		$this->theme = $this->Option->getOption('theme');
+		
 		$viewlogo = $this->Option->getOption('viewlogo');
 		$site_title = $this->Option->getOption('site_title');
 		$header_title = $this->Option->getOption('title');

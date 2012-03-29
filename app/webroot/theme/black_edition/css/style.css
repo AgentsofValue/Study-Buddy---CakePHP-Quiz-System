@@ -91,7 +91,8 @@ p {
 /* ***** */
 
 body {
-	background: #194e82 url(images/background.png) top left repeat-x /*#373839*/;
+	/*background: #194e82 url(images/background.png) top left repeat-x /*#373839;*/
+	background: #141414;
 	padding-bottom: 12px;
 }
 
@@ -160,11 +161,21 @@ a:hover {
 #body{ width: 100%; }
 
 
-#body{ background: url(images/body-bg.png) repeat-y /*#ed8601 url(images/body_bg.gif)*/; }
-#body div{ background: url(images/top-body-bg.png) top center no-repeat; }
+/* #body{ background: url(images/body-bg.png) repeat-y /*#ed8601 url(images/body_bg.gif); } */
+/* #body div{ background: url(images/top-body-bg.png) top center no-repeat; } */
 /*#body div div { background: url(images/body_tr.gif) top right no-repeat; }*/
-#body div div div { background: url(images/bottom-body-bg1.png) bottom center no-repeat; }
+/* #body div div div { background: url(images/bottom-body-bg1.png) bottom center no-repeat; } */
 /*#body div div div div { background: url(images/body_br.gif) bottom right no-repeat; }*/
+#body {
+	background: #fff;
+	border: 5px solid #615D57;
+	
+	border-radius: 20px 20px;
+	-moz-border-radius: 20px 20px;
+	-webkit-border-radius: 20px 20px;
+	-khtml-border-radius: 20px 20px;
+	
+}
 #body .inner div { background: none; }
 
 
@@ -508,40 +519,32 @@ input[type=text]#QuizCode{
 	width: 50%;
 }
 
-input#admin, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
+input#admin, #input_items, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
 	clear: both;
+	background: #556159;
+	border: 1px solid #47443E;
+	color: #fff;
 	font-size: 130%;
 	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
-	width:90%;
-	background: #97FFFF;
-	border: 1px solid #5F9EA0;
-	margin-bottom:30px;
-
-
+	padding: 5px;
+	width: 90%;
+	margin-bottom: 30px;
 }
 
 input#input_items{
 	width:20%;
-	
 }
-
-input#QuestionText{
-	background: #98F5FF;
-
-}
-
-
 
 div.input.checkbox label{
 	display: inline;
 	font-size: 18px;
 	color:#4d4d4d;
-	
 }
+
 div.checkbox{
 	padding: 10px;
 }
+
 div.checkbox label{
 	display:inline;
 	padding: 2px;
@@ -1225,9 +1228,9 @@ a {
 }
 
 #form-configuration input[type=text] {
-	background-color: #458ED9;
+	background-color: #24201F;
 	border: medium none;
-	color: #141414;
+	color: #fff;
 	margin-left: 10px;
 	padding: 5px 7px;
 	width: 385px;
@@ -1239,7 +1242,7 @@ a {
 }
 
 #form-configuration input[type="text"]:focus {
-    background-color: #B7BFBA;
+    background-color: #615D57;
 }
 
 #form-configuration select {

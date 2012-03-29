@@ -19,6 +19,7 @@ class DashboardsController extends AppController {
 		$title = $this->Option->getOption('title');
 		$taglines = $this->Option->getOption('taglines');
 		$viewlogo = $this->Option->getOption('viewlogo');
+		$themes = $this->Option->getOption('theme');
 		
 		if(!empty($this->data)) {
 			if($title !== false && $title == null) {
@@ -59,10 +60,18 @@ class DashboardsController extends AppController {
 				$this->Option->setOption('viewlogo', $this->data['Option']['viewlogo'], false);
 			}
 			
+			if($themes !== false && $themes == null) {
+				//do save
+				$this->Option->setOption('theme', $this->data['Option']['theme']);
+			} else {
+				//do update
+				$this->Option->setOption('theme', $this->data['Option']['theme'], false);
+			}
+			
 			$this->Session->setFlash(__('Options Save!', true));
 			$this->redirect($this->referer());
 		}
-		$this->set(compact('title', 'stitle', 'taglines', 'viewlogo'));
+		$this->set(compact('title', 'stitle', 'taglines', 'viewlogo', 'themes'));
 	}
 	
 	function admin_add() {
