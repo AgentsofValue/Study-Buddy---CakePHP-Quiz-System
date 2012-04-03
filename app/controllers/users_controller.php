@@ -13,6 +13,13 @@ class UsersController extends AppController {
 		if($this->action == 'admin_add' || $this->action == 'admin_edit') {
 			$this->Auth->authenticate = $this->User;
 		}
+		
+		$viewlogo = $this->Option->getOption('viewlogo');
+		$site_title = $this->Option->getOption('site_title');
+		$header_title = $this->Option->getOption('title');
+		$taglines = $this->Option->getOption('taglines');
+		
+		$this->set(compact('viewlogo', 'site_title', 'header_title', 'taglines'));
 	}
 	
 	function admin_add() {

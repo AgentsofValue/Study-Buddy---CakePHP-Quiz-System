@@ -55,12 +55,7 @@ class AppController extends Controller {
 		// Load Theme
 		$this->theme = $this->Option->getOption('theme');
 		
-		$viewlogo = $this->Option->getOption('viewlogo');
-		$site_title = $this->Option->getOption('site_title');
-		$header_title = $this->Option->getOption('title');
-		$taglines = $this->Option->getOption('taglines');
-		
-		$this->set(compact('is_logged_in', 'username', 'viewlogo', 'site_title', 'header_title', 'taglines'));
+		$this->set(compact('is_logged_in', 'username'));
 	}
 	
 	function _isLoggedIn() {

@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<td><label>Theme: </label></td>
-				<td><?php echo $form->select('Option.theme', array('default' => 'Default', 'black_edition' => 'Black Edition'), $themes, array('style' => 'margin-bottom: 0px;', 'empty' => '-')); ?></td>
+				<td><?php echo $form->select('Option.theme', array('default' => 'Default', 'black_edition' => 'Black Edition'), $themes, array('style' => 'margin-bottom: 0px;', 'empty' => '-- choose a theme --')); ?></td>
 			</tr>
 		</table>
 	</fieldset>

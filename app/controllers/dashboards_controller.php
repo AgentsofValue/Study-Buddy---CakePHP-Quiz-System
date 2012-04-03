@@ -1,13 +1,20 @@
 <?php
 class DashboardsController extends AppController {
 	var $name = 'Dashboards';
-	var $uses = array('Question', 'Users');
+	var $uses = array('Question', 'Users', 'Quizzes', 'QuestionQuiz');
 	var $helpers = array('Html', 'Form', 'Javascript');
 	var $layout = 'admin';
 	
 	function beforeFilter() {
 		parent::beforeFilter();
 		//$this->Auth->allow(array('admin_home'));
+		
+		$viewlogo = $this->Option->getOption('viewlogo');
+		$site_title = $this->Option->getOption('site_title');
+		$header_title = $this->Option->getOption('title');
+		$taglines = $this->Option->getOption('taglines');
+		
+		$this->set(compact('viewlogo', 'site_title', 'header_title', 'taglines'));
 	}
 	
 	function admin_home() {}
@@ -328,5 +335,106 @@ class DashboardsController extends AppController {
 			$this->Session->setFlash('No next question.', true);
 			$this->redirect(array('action' => 'admin_view_one', $question_id ));
 		}
+	}
+	
+	function admin_reports() { /* handles the parent view of summary reports */ }
+	
+	function reports_result() {
+		$this->layout = '';
+		
+		$page = 1;
+		$limit = 3;
+		
+		if(isset($this->params['url']['p']))
+			$page = $this->params['url']['p'];
+		
+		$order = array('datetime DESC');
+		$quiz_users = $this->Quizzes->find('all', array(
+			'page' => $page,
+			'limit' => $limit,
+			'order' => $order
+		));
+		
+		$nextresults = $this->Quizzes->find('all', array(
+			'page' => $page + 1,
+			'limit' => $limit,
+			'order' => $order
+		));
+		
+		$report_results = array();
+		
+		foreach($quiz_users as $key => $data) {
+			$no_of_correct = 0;
+			$no_of_wrong = 0;
+			
+			$quiz_id = $data['Quizzes']['id'];
+			
+			$user_answers = $this->Question->get_user_answers($quiz_id);
+			$total_numbers = $this->Question->total_number_of_answers($quiz_id);
+			
+			foreach($user_answers as $answers) {
+				foreach($answers['Answer'] as $ans) {
+					$correctness = $this->Question->Choice->get_correctness($ans['answer']);
+					
+					if($correctness == 1) {
+						$no_of_correct += 1;
+					} else {
+						$no_of_wrong += 1;
+					}
+				}
+			}
+			
+			$report_results[$key]['quiz_id'] = $quiz_id;
+			$report_results[$key]['user_name'] = $data['Quizzes']['user_name'];
+			// $report_results[$key]['code'] = $data['Quizzes']['code'];
+			$report_results[$key]['total_questions'] = $this->Question->get_total_items($quiz_id);
+			$report_results[$key]['no_of_correct'] = $no_of_correct;
+			$report_results[$key]['no_of_wrong'] = $no_of_wrong;
+			$report_results[$key]['no_left_blank'] = $this->Question->count_marked($quiz_id);
+			$report_results[$key]['total_score'] = round(($no_of_correct / $total_numbers) * 100, 2);
+			// debug($user_answers);
+		}
+		
+		$this->set(compact('report_results', 'page', 'nextresults'));
+		
+	}
+	
+	function admin_reports_review($quiz_id) {
+		$quiz_user = $this->Quizzes->findById($quiz_id);
+		
+		$questions = $this->Question->review_questions($quiz_id);
+		// debug($questions);
+		
+		$review_result = array();
+		
+		foreach($questions as $key => $question) {
+			$question_id = $question['QuestionQuiz']['question_id'];
+			
+			$question_data = $this->Question->get_question_text($question_id);
+			$answer = $this->Question->QuestionQuiz->Answer->get_answers($question['QuestionQuiz']['id']);
+			
+			$selected = null;
+			if(!empty($answer)) {
+				foreach($answer as $ans) {
+					$selected = $this->Question->Choice->findById($ans);
+				}
+			}
+			
+			$review_result[$key]['question_id'] = $question_id;
+			$review_result[$key]['question_text'] = $question_data['Question']['text'];
+			$review_result[$key]['answer'] = ($selected != null) ? $selected['Choice']['text'] : 'No Answer';
+			$review_result[$key]['correct_answer'] = $question_data['CorrectAnswer'][0]['text'];
+			
+			if($review_result[$key]['answer'] != $review_result[$key]['correct_answer']) {
+				$review_result[$key]['is_correct'] = 0;
+				$review_result[$key]['marked_string'] = "X";
+			} else {
+				$review_result[$key]['is_correct'] = 1;
+				$review_result[$key]['marked_string'] = "&#8730;";
+			}
+			$review_result[$key]['is_marked'] = $question['QuestionQuiz']['is_marked'];;
+		}
+		
+		$this->set('review_result', $review_result);
 	}
 }

@@ -16,7 +16,7 @@
 			<p><b>Prefix</b>: <span><?php echo $config['prefix']; ?></span></p>
 			<?php if(empty($config['prefix'])) : ?>
 			<div id="box-warning-error">
-				<p><b>Warning:</b> Table prefix is not defined. Please define a table prefix in config.php to avoid table conflicts. If you wan't to continue click "Install" ahead.</p>
+				<p><b>Warning:</b> Table prefix is not defined. Please define a table prefix in config.php to avoid table conflicts. If you want to continue click "Install" ahead.</p>
 			</div>
 			<?php else: ?>
 			<div id="box-warning-ok">

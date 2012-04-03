@@ -7,6 +7,14 @@ class QuestionsController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('*');
+		
+		// parent::loadModel('Option');
+		$viewlogo = $this->Option->getOption('viewlogo');
+		$site_title = $this->Option->getOption('site_title');
+		$header_title = $this->Option->getOption('title');
+		$taglines = $this->Option->getOption('taglines');
+		
+		$this->set(compact('viewlogo', 'site_title', 'header_title', 'taglines'));
 	}
 
 	function admin_home(){
