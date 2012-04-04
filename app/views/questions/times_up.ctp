@@ -1,6 +1,6 @@
 	<div id="topinnerbox">
 		<div class="indent">
-			<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 70px; "><em><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></em></p>
+			<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 70px; "><em><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?></em></p>
 
 			<p style="text-align:center;">
 				<em style="font-size: 22px; color:#4d4d4d; font-weight:bold;">

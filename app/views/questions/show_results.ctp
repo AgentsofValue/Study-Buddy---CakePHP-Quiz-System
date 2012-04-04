@@ -9,7 +9,7 @@
 
 	<div id="topinvibox2">
 		
-		<h2 style="color:#2482cc;"><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
+		<h2 style="color:#2482cc;"><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?></h2>
 		<div id="top-right">
 			&nbsp;&nbsp;
 			<div style="float:right;">

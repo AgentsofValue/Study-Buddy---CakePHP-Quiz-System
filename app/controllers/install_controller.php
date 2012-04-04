@@ -16,6 +16,9 @@ class InstallController extends AppController {
 			parent::loadModel('User');
 			$this->Auth->authenticate = $this->User;
 		}
+		
+		$site_title = null;
+		$this->set('site_title', $site_title);
 	}
 	
 	function index() {
@@ -255,7 +258,9 @@ class InstallController extends AppController {
 		
 		$query = "INSERT INTO " . $this->tblPrefix . "options VALUES
 				(1, 'tbl_installed', 'true'),
-				(2, 'installed_ver', ".$this->dbVersion.");";
+				(2, 'installed_ver', ".$this->dbVersion."),
+				(3, 'viewlogo', 'on'),
+				(4, 'theme', 'default');";
 		$db->query($query);
 	}
 	

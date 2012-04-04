@@ -8,7 +8,7 @@
 						
 					</div>
 					<div id="right_review_header">
-						<h2><?php echo ($header_title == null) ? 'Google Analytics Study Buddy' : $header_title; ?></h2>
+						<h2><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?></h2>
 						<div id="left_topreview">
 							<h3>REVIEW QUESTIONS</h3>
 						</div>
