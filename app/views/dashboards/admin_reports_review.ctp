@@ -62,7 +62,7 @@
 	
 	#admin-review-body #review {
 		border-spacing: 0;
-		padding: 10px;
+		padding: 5px;
 		width: 558px;
 	}
 	
@@ -82,7 +82,7 @@
 	#admin-review-body .question-text { width: 255px; }
 	#admin-review-body .answer, #admin-review-body .correct-answer { text-align: center; width: 100px; }
 	
-	#admin-review-body .wrong, #admin-review-body .correct { text-align: center; }
+	#admin-review-body .wrong, #admin-review-body .correct { text-align: center; width: 20px; }
 	
 	#admin-review-body .wrong { color: #f00; }
 	#admin-review-body .correct { color: #0f0; }
@@ -110,20 +110,26 @@
 							<th>#</th>
 							<th>Question</th>
 							<th>Answer</th>
-							<th>Correct Answer</th>
+							<th>Correct Answer/s</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php $i = 1; ?>
 						<?php foreach($review_result as $rr) : ?>
 						<?php
+							if($i % 2 == 0) :
+								$tr_id = 'even';
+							elseif($i % 2 == 1) :
+								$tr_id = 'odd';
+							endif;
+							
 							if($rr['is_correct'] == 0) {
 								$marked_class = 'wrong';
 							} else {
 								$marked_class = 'correct';
 							}
 						?>
-						<tr>
+						<tr id="<?php echo $tr_id; ?>">
 							<td class="<?php echo $marked_class; ?>"><?php echo $rr['marked_string']; ?></td>
 							<td><?php echo $i; ?></td>
 							<td class="question-text"><?php echo $rr['question_text']; ?></td>

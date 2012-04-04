@@ -343,7 +343,7 @@ class DashboardsController extends AppController {
 		$this->layout = '';
 		
 		$page = 1;
-		$limit = 3;
+		$limit = 10;
 		
 		if(isset($this->params['url']['p']))
 			$page = $this->params['url']['p'];
@@ -370,17 +370,31 @@ class DashboardsController extends AppController {
 			$quiz_id = $data['Quizzes']['id'];
 			
 			$user_answers = $this->Question->get_user_answers($quiz_id);
-			$total_numbers = $this->Question->total_number_of_answers($quiz_id);
 			
-			foreach($user_answers as $answers) {
-				foreach($answers['Answer'] as $ans) {
-					$correctness = $this->Question->Choice->get_correctness($ans['answer']);
-					
-					if($correctness == 1) {
-						$no_of_correct += 1;
-					} else {
-						$no_of_wrong += 1;
+			foreach($user_answers as $user_answer) {
+				$qq_id = $user_answer['QuestionQuiz']['id'];
+				$question_id = $user_answer['QuestionQuiz']['question_id'];
+				
+				$question_data = $this->Question->get_question_text($question_id);
+				$answers = $this->Question->QuestionQuiz->Answer->get_answers($qq_id);
+				
+				$selected = null;
+				if(!empty($answers)) {
+					foreach($answers as $answer) {
+						$selected[] = $this->Question->Choice->findById($answer);
 					}
+				}
+				
+				$answer_1 = $selected[0]['Choice']['text'];
+				$answer_2 = null;
+				if(sizeof($selected) > 1) {
+					$answer_2 = $selected[1]['Choice']['text'];
+				}
+				
+				if($this->isAnswerCorrect($answer_1, $answer_2, $question_data['CorrectAnswer'])) {
+					$no_of_correct += 1;
+				} else {
+					$no_of_wrong += 1;
 				}
 			}
 			
@@ -390,20 +404,17 @@ class DashboardsController extends AppController {
 			$report_results[$key]['total_questions'] = $this->Question->get_total_items($quiz_id);
 			$report_results[$key]['no_of_correct'] = $no_of_correct;
 			$report_results[$key]['no_of_wrong'] = $no_of_wrong;
-			$report_results[$key]['no_left_blank'] = $this->Question->count_marked($quiz_id);
-			$report_results[$key]['total_score'] = round(($no_of_correct / $total_numbers) * 100, 2);
-			// debug($user_answers);
+			$report_results[$key]['no_left_blank'] = $this->Question->count_unanswered_unmarked($quiz_id);
+			$report_results[$key]['total_score'] = $this->getTotalScore($quiz_id);
 		}
 		
 		$this->set(compact('report_results', 'page', 'nextresults'));
-		
 	}
 	
 	function admin_reports_review($quiz_id) {
 		$quiz_user = $this->Quizzes->findById($quiz_id);
 		
 		$questions = $this->Question->review_questions($quiz_id);
-		// debug($questions);
 		
 		$review_result = array();
 		
@@ -416,25 +427,87 @@ class DashboardsController extends AppController {
 			$selected = null;
 			if(!empty($answer)) {
 				foreach($answer as $ans) {
-					$selected = $this->Question->Choice->findById($ans);
+					$selected[] = $this->Question->Choice->findById($ans);
 				}
 			}
 			
 			$review_result[$key]['question_id'] = $question_id;
 			$review_result[$key]['question_text'] = $question_data['Question']['text'];
-			$review_result[$key]['answer'] = ($selected != null) ? $selected['Choice']['text'] : 'No Answer';
-			$review_result[$key]['correct_answer'] = $question_data['CorrectAnswer'][0]['text'];
+			$review_result[$key]['answer_1'] = $selected[0]['Choice']['text'];
+			$review_result[$key]['answer_2'] = null;
+			if(sizeof($selected) > 1) {
+				$review_result[$key]['answer_2'] = $selected[1]['Choice']['text'];
+			}
+			$review_result[$key]['correct_answer_1'] = $question_data['CorrectAnswer'][0]['text'];
+			$review_result[$key]['correct_answer_2'] = null;
+			if(sizeof($question_data['CorrectAnswer']) > 1) {
+				$review_result[$key]['correct_answer_2'] = $question_data['CorrectAnswer'][1]['text'];
+			}
 			
-			if($review_result[$key]['answer'] != $review_result[$key]['correct_answer']) {
-				$review_result[$key]['is_correct'] = 0;
-				$review_result[$key]['marked_string'] = "X";
-			} else {
+			// Let's check if the answered value is correct or wrong.
+			if($this->isAnswerCorrect($review_result[$key]['answer_1'],
+									  $review_result[$key]['answer_2'],
+									  $question_data['CorrectAnswer'])) {
 				$review_result[$key]['is_correct'] = 1;
 				$review_result[$key]['marked_string'] = "&#8730;";
+			} else {
+				$review_result[$key]['is_correct'] = 0;
+				$review_result[$key]['marked_string'] = "X";
 			}
-			$review_result[$key]['is_marked'] = $question['QuestionQuiz']['is_marked'];;
+			
+			// Holds the entire answered value of the user.
+			$review_result[$key]['answer'] = $review_result[$key]['answer_1'];
+			if($review_result[$key]['answer_2'] != null) {
+				$review_result[$key]['answer'] .= " / " . $review_result[$key]['answer_2'];
+			}
+			
+			// If NULL then it means the user did not answer the question.
+			if($review_result[$key]['answer'] == null) {
+				$review_result[$key]['answer'] = 'none';
+			}
+			
+			// Holds the entire correct answer values of the questions.
+			$review_result[$key]['correct_answer'] = $review_result[$key]['correct_answer_1'];
+			if($review_result[$key]['correct_answer_2'] != null) {
+				$review_result[$key]['correct_answer'] .= " / " . $review_result[$key]['correct_answer_2'];
+			}
+			
+			$review_result[$key]['is_marked'] = $question['QuestionQuiz']['is_marked'];
 		}
 		
 		$this->set('review_result', $review_result);
+	}
+	
+	function getTotalScore($quiz_id) {
+		$correct_ans = 0;
+		
+		$user_answers = $this->Question->get_user_answers($quiz_id);
+		$total_numbers = $this->Question->total_number_of_answers($quiz_id);
+		
+		foreach($user_answers as $answers) {
+			foreach($answers['Answer'] as $ans) {
+				$correctness = $this->Question->Choice->get_correctness($ans['answer']);
+				
+				if($correctness == 1) {
+					$correct_ans += 1;
+				}
+			}
+		}
+		
+		return round(($correct_ans / $total_numbers) * 100, 2);
+	}
+	
+	function isAnswerCorrect($answer_1, $answer_2, $correct_answer) {
+		if(sizeof($correct_answer) > 1 && 
+			($answer_1 == $correct_answer[0]['text'] || $answer_1 == $correct_answer[1]['text'])) {
+			return true;
+		} else if(sizeof($correct_answer) > 1 && 
+			($answer_2 == $correct_answer[0]['text'] || $answer_2 == $correct_answer[1]['text'])) {
+			return true;
+		} else if($answer_1 == $correct_answer[0]['text']) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
