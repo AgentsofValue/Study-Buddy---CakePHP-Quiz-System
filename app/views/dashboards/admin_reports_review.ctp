@@ -1,4 +1,3 @@
-<?php // debug($review_result); ?>
 <style>
 	#admin-review-header {
 		border: 1px solid #0071A3;
@@ -31,6 +30,13 @@
 	#admin-review-header #left-top h3 {
 		color: #0071A3;
 		font-size: 12px;
+		padding-left: 10px;
+	}
+	
+	#admin-review-header p {
+		color: #0071A3;
+		font-size: 12px;
+		margin: 5px 0;
 		padding-left: 10px;
 	}
 	
@@ -94,11 +100,12 @@
 		<div id="right">
 			<h2>REVIEW TEST RESULTS</h2>
 			<div id="left-top">
-				
+				<p><b>Username: </b><?php echo $quiz_user['Quizzes']['user_name']; ?></p>
+				<p><b>Date Taken: </b><?php echo date('M d, Y', strtotime($quiz_user['Quizzes']['datetime'])); ?></p>
+				<p><?php echo ($quiz_user['Quizzes']['is_finished'] == 0) ? 'Undone' : 'Done'; ?></p>
 			</div>
 		</div>
 	</div>
-				
 	<div id="admin-review-body">
 		<div id="top"></div>
 		<div id="content">

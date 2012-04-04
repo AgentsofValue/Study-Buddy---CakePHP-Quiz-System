@@ -475,7 +475,7 @@ class DashboardsController extends AppController {
 			$review_result[$key]['is_marked'] = $question['QuestionQuiz']['is_marked'];
 		}
 		
-		$this->set('review_result', $review_result);
+		$this->set(compact('review_result', 'quiz_user'));
 	}
 	
 	function getTotalScore($quiz_id) {
