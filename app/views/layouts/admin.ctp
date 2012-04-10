@@ -8,8 +8,8 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 		<?php
-			echo $html->script(array('dropdowntabs.js', 'cloning.js'));
-			echo $html->css(array('reset', 'style', 'slidingdoor'));
+			echo $html->script(array('cloning.js', 'jquery.ui.potato.menu'));
+			echo $html->css(array('reset', 'style', 'slidingdoor', 'jquery.ui.potato.menu'));
 		?>
 </head>
 <body>
@@ -33,37 +33,37 @@
 									<p id="site-header-title"><em><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?><br />Administrator Dashboard</em></p>
 								</div>
 								<br /><br />
-								<div id="slidemenu" class="slidetabsmenu">
-									<ul>
-										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_home')); ?>" title="Home"><span>Home</span></a></li>
-										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_configurations')); ?>" title="Configurations"><span>Configurations</span></a></li>
-										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_reports')); ?>" title="Reports"><span>Reports</span></a></li>
-										<li><a href="#" title="Add" rel="dropmenu1_c"><span>Add</span></a></li>
-										<li><a href="#" title="Review" rel="dropmenu2_c"><span>View</span></a></li>
+								<script type="text/javascript">
+									(function($) {
+										$(document).ready(function(){
+											$('#menu1').ptMenu();
+										});
+									})(jQuery);
+								</script>
+								<div id="nav-menu">
+									<ul id="menu1"> 
+										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_home')); ?>" title="Home">Home</a></li>
+										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_configurations')); ?>" title="Configurations">Configurations</a></li>
+										<li><a href="<?php echo $html->url(array('controller' => 'dashboards', 'action' => 'admin_reports')); ?>" title="Reports">Reports</a></li>
+										<li> 
+											<a href="#">Add</a>
+											<ul>
+												<li><?php echo $html->link('Question', array('controller' => 'dashboards', 'action'=>'admin_add')); ?></li>
+												<li><?php echo $html->link('Topic', array('controller' => 'dashboards', 'action'=>'admin_add_topic')); ?></li>
+												<li><?php echo $html->link('User', array('controller' => 'users', 'action'=>'admin_add')); ?></li>
+											</ul>
+										</li>
+										<li> 
+											<a href="#">View</a>
+											<ul>
+												<li><?php echo $html->link('Questions', array('controller' => 'dashboards', 'action'=>'admin_view_all')); ?></li>
+												<li><?php echo $html->link('Topics', array('controller' => 'dashboards', 'action'=>'admin_view_all_topics')); ?></li>
+												<li><?php echo $html->link('Users', array('controller' => 'users', 'action'=>'admin_view')); ?></li>
+											</ul>
+										</li>
 									</ul>
 								</div>
 								
-								<br style="clear: left;" />
-								<br class="IEonlybr" />
-								
-								<!--1st drop down menu -->                                                   
-								<div id="dropmenu1_c" class="dropmenudiv_c" style="width: 150px;">
-								<?php
-									echo $html->link('Question', array('controller' => 'dashboards', 'action'=>'admin_add'));  
-									echo $html->link('Topic', array('controller' => 'dashboards', 'action'=>'admin_add_topic')); 
-									echo $html->link('User', array('controller' => 'users', 'action'=>'admin_add'));
-								?>
-								</div>
-
-
-								<!--2nd drop down menu -->                                                
-								<div id="dropmenu2_c" class="dropmenudiv_c" style="width: 150px;">
-								<?php
-									echo $html->link('Questions', array('controller' => 'dashboards', 'action'=>'admin_view_all'));
-									echo $html->link('Topics', array('controller' => 'dashboards', 'action'=>'admin_view_all_topics'));
-									echo $html->link('Users', array('controller' => 'users', 'action'=>'admin_view'));
-								?>
-								</div>
 							<?php echo $this->Session->flash(); ?>
 							<?php echo $content_for_layout; ?>
 							</div>
@@ -80,10 +80,6 @@
 			</div>
 		</div><!-- end boxes -->
 		<div id="footer">
-			<script type="text/javascript">
-				//SYNTAX: tabdropdown.init("menu_id", [integer OR "auto"])
-				tabdropdown.init("slidemenu")
-			</script>
 		</div><!-- end footer -->
 	</div><!-- end wrapper -->
 </body>

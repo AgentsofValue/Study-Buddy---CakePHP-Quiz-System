@@ -1401,3 +1401,73 @@ tbody#report-body td {
 
 #admin-review-body .wrong { color: #f00; }
 #admin-review-body .correct { color: #0f0; }
+
+/*-- New Nav-Menu Layout --*/
+ul#menu1 {}
+ul#menu2 { clear: both; width: 160px; margin-top: 10px; }
+li.potato-menu-item {
+    width: 112px;
+    font-size: 10px;
+	background-color: #195184;
+}
+
+li.potato-menu-item:first-child {
+	border-radius: 10px 0 0 0;
+	-moz-border-radius: 10px 0 0 0;
+	-khtml-border-radius: 10px 0 0 0;
+	-webkit-border-radius: 10px 0 0 0;
+}
+
+li.potato-menu-item:last-child {
+	border-radius: 0 10px 0 0;
+	-moz-border-radius: 0 10px 0 0;
+	-khtml-border-radius: 0 10px 0 0;
+	-webkit-border-radius: 0 10px 0 0;
+}
+
+li.potato-menu-item a {
+    padding: 13px 10px;
+    color: #fff;
+	text-align: center;
+}
+
+li.potato-menu-hover {
+    background-color: #2265A8;
+	color: #fff;
+	text-decoration: underline;
+}
+
+li.potato-menu-has-vertical > a {
+	background: transparent url('images/arrow_down.gif') right no-repeat;
+}
+
+ul.potato-menu-vertical > li {
+	background-color: #195184;
+}
+
+ul.potato-menu-vertical > li.potato-menu-hover {
+	background-color: #2265A8;
+}
+
+ul.potato-menu-vertical > li:first-child {
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+ul.potato-menu-vertical > li:last-child {
+	border-radius: 0 0 10px 10px;
+	-moz-border-radius: 0 0 10px 10px;
+	-khtml-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+}
+
+li.potato-menu-has-holizontal > a {
+    background: transparent url('images/arrow_right.gif') right no-repeat;
+}
+
+li.potato-menu-item ul {
+    /* border-top: 1px solid #444;
+    border-left: 1px solid #444; */
+}
