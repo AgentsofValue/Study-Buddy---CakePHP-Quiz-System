@@ -1,5 +1,5 @@
 <style>
-	thead#report-head th {
+	/*thead#report-head th {
 		background: #615D57;
 		color: #fff;
 		padding: 5px;
@@ -41,7 +41,7 @@
 		border: none;
 		width: 16px;
 		height: 16px;
-	}
+	}*/
 </style>
 <div style=" font-size: 13px; margin-top: 50px">
 	<div id="quiz-reports"></div>

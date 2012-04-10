@@ -92,12 +92,34 @@ p {
 
 body {
 	/*background: #194e82 url(images/background.png) top left repeat-x /*#373839;*/
-	background: #141414;
+	/* Old browsers */
+	background: #232323;
+	/* FF3.6+ */
+	background: -moz-linear-gradient(top,  #232323 1%, #141414 99%) repeat-x #141414;
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#232323), color-stop(99%,#141414)) repeat-x #141414;
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top,  #232323 1%,#141414 99%) repeat-x #141414;
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top,  #232323 1%,#141414 99%) repeat-x #141414;
+	/* IE10+ */
+	background: -ms-linear-gradient(top,  #232323 1%,#141414 99%) repeat-x #141414;
+	/* W3C */
+	background: linear-gradient(top,  #232323 1%,#141414 99%) repeat-x #141414;
+	/* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#232323', endColorstr='#141414',GradientType=0 ) repeat-x #141414;
 	padding-bottom: 12px;
 }
 
 #wrapper {
 	width: 708px;
+}
+
+#site-header-title {
+	color: #458ed2;
+	font-size: 20px;
+	padding-top: 40px;
+	text-align: center;
 }
 
 h1 {
@@ -1258,3 +1280,142 @@ a {
 	-webkit-border-radius: 5px 5px 5px 5px;
 	-khtml-border-radius: 5px 5px 5px 5px;
 }
+
+/*--- Additional CSS Layouts REPORTS ---*/
+thead#report-head th {
+	background: #615D57;
+	color: #fff;
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+tbody#report-body td {
+	padding: 5px 2px;
+	vertical-align: middle;
+}
+
+.filter-box { float:left; padding: 5px 0; }
+#tprev, #tnext {
+	display: inline-block;
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #565656;
+	cursor: pointer;
+	padding: 0 10px 0 10px;
+	line-height: 20px; /* Safari */
+}
+
+#tprev:hover, #tnext:hover {
+	background-color: #B7BFBA;
+	border: 1px solid #615D57;
+	color: #336699;	
+}
+
+#tprev img, #tnext img {
+	background: none;
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
+
+#admin-review-header {
+	border: 1px solid #0071A3;
+	height: 110px;
+}
+
+#admin-review-header #left {
+	background-color: #0071A3;
+	float: left;
+	height: 110px;
+	width: 180px;
+}
+
+#admin-review-header #right {
+	float: left;
+	height: 110px;
+	width: auto;
+}
+
+#admin-review-header #right h2 {
+	color: #0071A3;
+	padding-left: 10px;
+	padding-top: 15px;
+}
+
+#admin-review-header #left-top {
+	border-top: 1px solid #0071A3;
+}
+
+#admin-review-header #left-top h3 {
+	color: #0071A3;
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+#admin-review-header p {
+	color: #0071A3;
+	font-size: 12px;
+	margin: 5px 0;
+	padding-left: 10px;
+}
+
+#admin-review-body {
+	border-bottom: 1px solid #0071A3;
+	border-right: 1px solid #0071A3;
+	border-top: 1px solid #0071A3;
+	height: auto;
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+#admin-review-body #top {
+	border-bottom: 1px solid #0071A3;
+	border-left: 1px solid #0071A3;
+	height: 30px
+}
+
+#admin-review-body #content {
+	
+}
+
+#box-content {
+	border-left: 1px solid #0071A3;
+	float: left;
+	height: auto;
+	overflow: hidden;
+}
+
+#admin-review-body #review {
+	border-spacing: 0;
+	padding: 5px;
+	width: 558px;
+}
+
+#admin-review-body thead {
+	background: none repeat scroll 0 0 #615D57;
+}
+
+#admin-review-body thead th {
+	border: 1px solid;
+	color: #FFFFFF;
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#admin-review-body tbody td { padding: 5px 2px; }
+#admin-review-body .question-text { width: 255px; }
+#admin-review-body .answer, #admin-review-body .correct-answer { text-align: center; width: 100px; }
+
+#admin-review-body .wrong, #admin-review-body .correct { text-align: center; width: 20px; }
+
+#admin-review-body .wrong { color: #f00; }
+#admin-review-body .correct { color: #0f0; }

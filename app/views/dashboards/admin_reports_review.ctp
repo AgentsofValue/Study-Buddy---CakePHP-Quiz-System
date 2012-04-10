@@ -1,5 +1,5 @@
 <style>
-	#admin-review-header {
+	/*#admin-review-header {
 		border: 1px solid #0071A3;
 		height: 110px;
 	}
@@ -91,7 +91,7 @@
 	#admin-review-body .wrong, #admin-review-body .correct { text-align: center; width: 20px; }
 	
 	#admin-review-body .wrong { color: #f00; }
-	#admin-review-body .correct { color: #0f0; }
+	#admin-review-body .correct { color: #0f0; } */
 	
 </style>
 <div style=" font-size: 13px; margin-top: 50px">

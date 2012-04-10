@@ -91,7 +91,23 @@ p {
 /* ***** */
 
 body {
-	background: #194e82 url(images/background.png) top left repeat-x /*#373839*/;
+	/*background: #194e82 url(images/background.png) top left repeat-x /*#373839;*/
+	/* Old browsers */
+	background: #d40d12;
+	/* FF3.6+ */
+	background: -moz-linear-gradient(top,  #d40d12 1%, #94090d 99%) repeat-x #94090d;
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d40d12), color-stop(99%,#94090d)) repeat-x #94090d;
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top,  #d40d12 1%,#94090d 99%) repeat-x #94090d;
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top,  #d40d12 1%,#94090d 99%) repeat-x #94090d;
+	/* IE10+ */
+	background: -ms-linear-gradient(top,  #d40d12 1%,#94090d 99%) repeat-x #94090d;
+	/* W3C */
+	background: linear-gradient(top,  #d40d12 1%,#94090d 99%) repeat-x #94090d;
+	/* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d40d12', endColorstr='#94090d',GradientType=0 ) repeat-x #94090d;
 	padding-bottom: 12px;
 }
 
@@ -100,7 +116,7 @@ body {
 }
 
 #site-header-title {
-	color: #458ed2;
+	color: #D40D12;
 	font-size: 20px;
 	padding-top: 40px;
 	text-align: center;
@@ -167,11 +183,21 @@ a:hover {
 #body{ width: 100%; }
 
 
-#body{ background: url(images/body-bg.png) repeat-y /*#ed8601 url(images/body_bg.gif)*/; }
-#body div{ background: url(images/top-body-bg.png) top center no-repeat; }
+/* #body{ background: url(images/body-bg.png) repeat-y /*#ed8601 url(images/body_bg.gif); } */
+/* #body div{ background: url(images/top-body-bg.png) top center no-repeat; } */
 /*#body div div { background: url(images/body_tr.gif) top right no-repeat; }*/
-#body div div div { background: url(images/bottom-body-bg1.png) bottom center no-repeat; }
+/* #body div div div { background: url(images/bottom-body-bg1.png) bottom center no-repeat; } */
 /*#body div div div div { background: url(images/body_br.gif) bottom right no-repeat; }*/
+#body {
+	background: #fff;
+	border: 5px solid #5C0002;
+	
+	border-radius: 20px 20px;
+	-moz-border-radius: 20px 20px;
+	-webkit-border-radius: 20px 20px;
+	-khtml-border-radius: 20px 20px;
+	
+}
 #body .inner div { background: none; }
 
 
@@ -475,7 +501,7 @@ strong#choices_label{
 strong#admin_display{
 
 	font-family: "Helvetica", sans-serif;
-	color: #00008B;
+	color: #94090D;
 	font-size: 18px;
 	text-align:center;
 	
@@ -515,40 +541,36 @@ input[type=text]#QuizCode{
 	width: 50%;
 }
 
-input#admin, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
+input#admin, #input_items, input#QuestionText, input#UserUsername, input#UserPassword, input#UserPasswordConfirmation {
 	clear: both;
+	background: #5C0002;
+	border: 1px solid #450003;
+	color: #fff;
 	font-size: 130%;
 	font-family: "Frutiger Linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
-	width:90%;
-	background: #97FFFF;
-	border: 1px solid #5F9EA0;
-	margin-bottom:30px;
+	padding: 5px;
+	width: 90%;
+	margin-bottom: 30px;
+}
 
-
+input#admin:focus, #input_items:focus, input#QuestionText:focus, input#UserUsername:focus, input#UserPassword:focus, input#UserPasswordConfirmation:focus {
+	background: #94090D;
 }
 
 input#input_items{
 	width:20%;
-	
 }
-
-input#QuestionText{
-	background: #98F5FF;
-
-}
-
-
 
 div.input.checkbox label{
 	display: inline;
 	font-size: 18px;
 	color:#4d4d4d;
-	
 }
+
 div.checkbox{
 	padding: 10px;
 }
+
 div.checkbox label{
 	display:inline;
 	padding: 2px;
@@ -614,24 +636,32 @@ table#view_all_admin{
 }
 
 table#view_all_admin tr {
-		display: table-row;
-		border-bottom: 1px solid #DDD;
-}
-
-table#view_all_admin tr, table#view_all_admin td {
-	
-	padding: 10px;
-	text-align: left;
-	vertical-align: top;
+	display: table-row;
 	border-bottom: 1px solid #DDD;
 }
 
-tr#odd{
-	background-color: #fff;
-
+table#view_all_admin tr, table#view_all_admin td {
+	padding: 10px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid #D40D12;
 }
-tr#even{
-	background-color: #eee;	
+
+tr#odd {
+	background-color: #fff;
+	color: #94090D;
+}
+tr#odd a {
+	color: #94090D;
+}
+
+tr#even {
+	background-color: #FF1D23;
+	color: #fff;
+}
+
+tr#even a {
+	color: #fff;
 }
 
 table.data
@@ -1232,9 +1262,9 @@ a {
 }
 
 #form-configuration input[type=text] {
-	background-color: #458ED9;
+	background-color: #5C0002;
 	border: medium none;
-	color: #141414;
+	color: #fff;
 	margin-left: 10px;
 	padding: 5px 7px;
 	width: 385px;
@@ -1246,7 +1276,7 @@ a {
 }
 
 #form-configuration input[type="text"]:focus {
-    background-color: #B7BFBA;
+    background-color: #94090D;
 }
 
 #form-configuration select {
@@ -1265,7 +1295,7 @@ a {
 
 /*--- Additional CSS Layouts REPORTS ---*/
 thead#report-head th {
-	background: #615D57;
+	background: #5C0002;
 	color: #fff;
 	padding: 5px;
 	text-align: center;
@@ -1309,12 +1339,12 @@ tbody#report-body td {
 }
 
 #admin-review-header {
-	border: 1px solid #0071A3;
+	border: 1px solid #450003;
 	height: 110px;
 }
 
 #admin-review-header #left {
-	background-color: #0071A3;
+	background-color: #450003;
 	float: left;
 	height: 110px;
 	width: 180px;
@@ -1327,40 +1357,40 @@ tbody#report-body td {
 }
 
 #admin-review-header #right h2 {
-	color: #0071A3;
+	color: #450003;
 	padding-left: 10px;
 	padding-top: 15px;
 }
 
 #admin-review-header #left-top {
-	border-top: 1px solid #0071A3;
+	border-top: 1px solid #450003;
 }
 
 #admin-review-header #left-top h3 {
-	color: #0071A3;
+	color: #450003;
 	font-size: 12px;
 	padding-left: 10px;
 }
 
 #admin-review-header p {
-	color: #0071A3;
+	color: #450003;
 	font-size: 12px;
 	margin: 5px 0;
 	padding-left: 10px;
 }
 
 #admin-review-body {
-	border-bottom: 1px solid #0071A3;
-	border-right: 1px solid #0071A3;
-	border-top: 1px solid #0071A3;
+	border-bottom: 1px solid #450003;
+	border-right: 1px solid #450003;
+	border-top: 1px solid #450003;
 	height: auto;
 	margin-top: 10px;
 	overflow: hidden;
 }
 
 #admin-review-body #top {
-	border-bottom: 1px solid #0071A3;
-	border-left: 1px solid #0071A3;
+	border-bottom: 1px solid #450003;
+	border-left: 1px solid #450003;
 	height: 30px
 }
 
@@ -1369,7 +1399,7 @@ tbody#report-body td {
 }
 
 #box-content {
-	border-left: 1px solid #0071A3;
+	border-left: 1px solid #450003;
 	float: left;
 	height: auto;
 	overflow: hidden;

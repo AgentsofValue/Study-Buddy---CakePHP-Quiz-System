@@ -30,7 +30,7 @@
 							</div>
 							<div id="topinvibox1" style="height: auto; min-height: 450px; overflow: hidden;">
 								<div class="indent">
-									<p style="font-size:20px; color:#458ed2; text-align:center; padding-top: 40px; "><em><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?><br />Administrator Dashboard</em></p>
+									<p id="site-header-title"><em><?php echo ($header_title == null) ? 'Study Buddy' : $header_title; ?><br />Administrator Dashboard</em></p>
 								</div>
 								<br /><br />
 								<div id="slidemenu" class="slidetabsmenu">
